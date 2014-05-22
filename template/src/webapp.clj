@@ -1,10 +1,10 @@
 (ns webapp
-  (:use org.httpkit.server))
+  (:require [org.httpkit.server :refer [run-server]]))
 
 (defn app [req]
   {:status  200
    :headers {"Content-Type" "text/html"}
-   :body    "hello HTTP!"})
+   :body    "Hello HTTP!"})
 
 (defn -main [& args]
   (let [port (Integer/parseInt (get (System/getenv) "OPENSHIFT_CLOJURE_HTTP_PORT" "8080"))
