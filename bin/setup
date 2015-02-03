@@ -15,16 +15,4 @@ mkdir -p $LEIN_HOME
 mkdir -p $M2_REPO
 
 wget "https://raw.github.com/technomancy/leiningen/${LEIN_VER}/bin/lein-pkg" -O "bin/lein"
-wget "https://leiningen.s3.amazonaws.com/downloads/leiningen-${LEIN_VER}-standalone.jar" -O "${LEIN_JAVA_SHARE}/leiningen-${LEIN_VER}-standalone.jar"
-
-if echo "SHA512 (${LEIN_JAVA_SHARE}/leiningen-${LEIN_VER}-standalone.jar) = ${LEIN_STANDALONE_SHA512SUM}" | sha512sum -c -; then
-	sed -e "s:^\(LEIN_JAR=\)/usr/share/java/\(leiningen-\\\$LEIN_VERSION-standalone.jar\).*$:\1${LEIN_JAVA_SHARE}/.local/share/java/\2:" -i lein
-
-	chmod +x bin/lein
-else
-	echo "Unfortunately, the checksum for Leiningen 2.3.4 has changed or is no longer"
-	echo "valid.  Please make absolutely sure the new SHA512sum is correct, and then"
-	echo "submit a pull request.  Sorry for the inconvenience."
-	return 1
-fi
-
+chmod +x bin/lein
